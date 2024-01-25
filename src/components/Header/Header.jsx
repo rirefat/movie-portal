@@ -1,4 +1,5 @@
 import logo from '../../assets/moviePortal-transparent-logo.png';
+import logoDark from '../../assets/moviePortal-bg-black-square-logo.png';
 import { IoNotificationsSharp } from "react-icons/io5";
 import { FaCartShopping, FaUser } from "react-icons/fa6";
 import { MdSunny } from "react-icons/md";
@@ -19,7 +20,7 @@ const Header = () => {
             <header>
                 <nav className="container flex items-center justify-between space-x-10 py-6 mb-10">
                     <a href="index.html">
-                        <img src={logo} width="139" height="26" alt="Logo" />
+                        <img src={dark ? logoDark : logo} width="139" height="26" alt="Logo" />
                     </a>
 
                     <ul className="flex items-center space-x-5">
@@ -31,7 +32,7 @@ const Header = () => {
                         <li>
                             <a onClick={() => setShowCart(true)} className="bg-primary/20 dark:bg-primary/[7%] rounded-lg backdrop-blur-[2px] p-1 inline-block" href="#">
                                 <button><FaCartShopping color='#7f30f7' size="1.9em" /></button>
-                                {cart.length > 0 && <span className='absolute -top-3 -right-3 text-xl bg-[#D42967]/[80%] text-center text-white rounded-[50%] w-[25px] h-[25px]'>{cart.length}</span>}
+                                {cart.length > 0 && <span className='absolute -top-3 -right-3 text-xl bg-[#D42967]/[80%] flex items-center justify-center text-white rounded-[50%] w-[25px] h-[25px] p-2'>{cart.length}</span>}
                             </a>
                         </li>
                         <li>
