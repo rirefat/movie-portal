@@ -6,7 +6,16 @@ import { CartContext } from "../../utilities/contexts";
 import { getImgUrl } from "../../utilities/utils";
 
 const CartModal = ({ onClose }) => {
-    const [cart] = useContext(CartContext);
+    const [cart, setCart] = useContext(CartContext);
+
+    const handleRemoveAll = () => {
+        const response = confirm("Are you confirm to remove all movies from your cart?");
+        if (response) setCart([]);
+    }
+
+    const handleRemove = (item) => {
+        setCart(cart.filter((i)=> i.id !== item.id));
+    }
 
     return (
         <div
@@ -40,6 +49,7 @@ const CartModal = ({ onClose }) => {
                                     </div>
                                     <div className="flex justify-between gap-4 items-center">
                                         <button
+                                            onClick={() => handleRemove(item)}
                                             className="bg-[#D42967] rounded-md p-2 md:px-4 inline-flex items-center space-x-2 text-white"
                                         >
                                             <MdOutlinePlaylistRemove size="1.25rem" />
@@ -54,6 +64,7 @@ const CartModal = ({ onClose }) => {
 
                     <div className="flex items-center justify-between gap-2">
                         <a
+                            onClick={handleRemoveAll}
                             className="rounded-md p-2 md:px-4 inline-flex items-center space-x-2 bg-[#D42967] text-white text-m"
                             href="#"
                         >
