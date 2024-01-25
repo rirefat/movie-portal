@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { IoTicket } from "react-icons/io5";
 import { getImgUrl } from "../../utilities/utils";
 import Ratings from "./Ratings";

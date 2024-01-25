@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
 
 //  <FaStar color="#F7A031" size="1rem" />  // Full star
