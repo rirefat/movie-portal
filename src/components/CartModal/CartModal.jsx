@@ -4,6 +4,7 @@ import { MdOutlinePlaylistRemove } from "react-icons/md";
 import { useContext } from "react";
 import { CartContext } from "../../utilities/contexts";
 import { getImgUrl } from "../../utilities/utils";
+import emptyCartImg from '../../assets/empty-cart.svg'
 
 const CartModal = ({ onClose }) => {
     const [cart, setCart] = useContext(CartContext);
@@ -14,7 +15,7 @@ const CartModal = ({ onClose }) => {
     }
 
     const handleRemove = (item) => {
-        setCart(cart.filter((i)=> i.id !== item.id));
+        setCart(cart.filter((i) => i.id !== item.id));
     }
 
     return (
@@ -60,25 +61,37 @@ const CartModal = ({ onClose }) => {
                             ))
                         }
 
+                        {
+                            cart.length===0 && <div className="flex items-center justify-center gap-4">
+                                <img src={emptyCartImg} alt="Empty Cart" className="w-1/4"/>
+                                <h3 className="text-4xl ">Your Cart is <span className="text-primary font-bold">Empty!!</span></h3>
+                            </div>
+                        }
+
                     </div>
 
+
                     <div className="flex items-center justify-between gap-2">
-                        <a
-                            onClick={handleRemoveAll}
-                            className="rounded-md p-2 md:px-4 inline-flex items-center space-x-2 bg-[#D42967] text-white text-m"
-                            href="#"
-                        >
-                            <MdOutlinePlaylistRemove size="1.25rem" />
-                            <span>Remove All</span>
-                        </a>
-                        <div className="flex items-center gap-2">
-                            <a
-                                className="rounded-md p-2 md:px-4 inline-flex items-center space-x-2 bg-primary text-white text-m"
+                        {
+                            cart.length > 0 && <a
+                                onClick={handleRemoveAll}
+                                className="rounded-md p-2 md:px-4 inline-flex items-center space-x-2 bg-[#D42967] text-white text-m"
                                 href="#"
                             >
-                                <IoBagCheckOutline size="1.2rem" />
-                                <span>Checkout</span>
+                                <MdOutlinePlaylistRemove size="1.25rem" />
+                                <span>Remove All</span>
                             </a>
+                        }
+                        <div className="flex items-center gap-2">
+                            {
+                                cart.length > 0 && <a
+                                    className="rounded-md p-2 md:px-4 inline-flex items-center space-x-2 bg-primary text-white text-m"
+                                    href="#"
+                                >
+                                    <IoBagCheckOutline size="1.2rem" />
+                                    <span>Checkout</span>
+                                </a>
+                            }
                             <a
                                 onClick={onClose}
                                 className="border border-[#74766F] rounded-lg py-2 px-5 flex items-center justify-center gap-2 text-[#6F6F6F] dark:text-gray-200 font-semibold text-sm"
