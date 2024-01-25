@@ -1,8 +1,23 @@
 /* eslint-disable react/prop-types */
 import { IoTicket } from "react-icons/io5";
 import { getImgUrl } from "../../utilities/utils";
+import { useContext } from "react";
+import { CartContext } from "../../utilities/contexts";
 
 const MovieDetailsModal = ({ movie, onClose }) => {
+
+    const [cart, setCart] = useContext(CartContext);
+
+    const handleAddToCart = (movie) => {
+        const find = cart.find(item => {
+            return item.id === movie.id;
+        })
+
+        if (!find) {
+            setCart([...cart, movie]);
+        }
+    }
+
     return (
         <>
             <div className="fixed top-0 left-0 w-screen h-screen z-50 bg-black/60 backdrop-blur-sm">
@@ -24,6 +39,7 @@ const MovieDetailsModal = ({ movie, onClose }) => {
                             </p>
                             <div className="grid lg:grid-cols-2 gap-2">
                                 <a
+                                    onClick={() => handleAddToCart(movie)}
                                     className="bg-primary rounded-lg py-2 px-5 flex items-center justify-center gap-2 text-white font-bold text-sm"
                                     href="#"
                                 >

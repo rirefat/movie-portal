@@ -3,12 +3,15 @@ import { IoNotificationsSharp } from "react-icons/io5";
 import { FaCartShopping, FaUser } from "react-icons/fa6";
 import { MdSunny } from "react-icons/md";
 import { FaMoon } from "react-icons/fa";
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import CartModal from '../CartModal/CartModal';
+import { CartContext } from '../../utilities/contexts';
+
 const Header = () => {
 
     const [showCart, setShowCart] = useState(false);
-    
+    const [cart] = useContext(CartContext);
+
     return (
         <>
             {showCart && <CartModal onClose={() => setShowCart(false)} />}
@@ -27,6 +30,7 @@ const Header = () => {
                         <li>
                             <a onClick={() => setShowCart(true)} className="bg-primary/20 dark:bg-primary/[7%] rounded-lg backdrop-blur-[2px] p-1 inline-block" href="#">
                                 <button><FaCartShopping color='#7f30f7' size="1.9em" /></button>
+                                {cart.length > 0 && <span className='absolute -top-3 -right-3 text-xl bg-[#D42967]/[80%] text-center text-white rounded-[50%] w-[25px] h-[25px]'>{cart.length}</span>}
                             </a>
                         </li>
                         <li>

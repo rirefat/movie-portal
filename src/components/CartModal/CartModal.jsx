@@ -1,9 +1,13 @@
 /* eslint-disable react/prop-types */
 import { IoBagCheckOutline } from "react-icons/io5";
 import { MdOutlinePlaylistRemove } from "react-icons/md";
-import img from '../../assets/cart-item.png'
+import { useContext } from "react";
+import { CartContext } from "../../utilities/contexts";
+import { getImgUrl } from "../../utilities/utils";
 
 const CartModal = ({ onClose }) => {
+    const [cart] = useContext(CartContext);
+
     return (
         <div
             className="fixed top-0 left-0 w-screen h-screen z-50 bg-black/60 backdrop-blur-sm"
@@ -17,30 +21,35 @@ const CartModal = ({ onClose }) => {
                     <h2 className="text-2xl lg:text-[30px] mb-10 font-bold">Your Carts</h2>
                     <div className="space-y-8 lg:space-y-12 max-h-[450px] overflow-auto mb-10 lg:mb-14">
 
-                        <div className="grid grid-cols-[1fr_auto] gap-4">
-                            <div className="flex items-center gap-4">
-                                <img
-                                    className="rounded overflow-hidden"
-                                    src={img}
-                                    alt=""
-                                />
-                                <div>
-                                    <h3 className="text-base md:text-xl font-bold">Iron Man</h3>
-                                    <p className="max-md:text-xs text-[#575A6E]">
-                                        Action/Adventure/Sci-fi
-                                    </p>
-                                    <span className="max-md:text-xs">$100</span>
+                        {
+                            cart.map(item => (
+                                <div key={item.id} className="grid grid-cols-[1fr_auto] gap-4">
+                                    <div className="flex items-center gap-4">
+                                        <img
+                                            className="rounded overflow-hidden w-[4.5rem]"
+                                            src={getImgUrl(item.cover)}
+                                            alt="Movie Cover"
+                                        />
+                                        <div>
+                                            <h3 className="text-base md:text-xl font-bold">{item.title}</h3>
+                                            <p className="max-md:text-xs text-[#575A6E]">
+                                                {item.genre}
+                                            </p>
+                                            <span className="max-md:text-xs">${item.price}</span>
+                                        </div>
+                                    </div>
+                                    <div className="flex justify-between gap-4 items-center">
+                                        <button
+                                            className="bg-[#D42967] rounded-md p-2 md:px-4 inline-flex items-center space-x-2 text-white"
+                                        >
+                                            <MdOutlinePlaylistRemove size="1.25rem" />
+                                            <span className="max-md:hidden">Remove</span>
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="flex justify-between gap-4 items-center">
-                                <button
-                                    className="bg-[#D42967] rounded-md p-2 md:px-4 inline-flex items-center space-x-2 text-white"
-                                >
-                                    <MdOutlinePlaylistRemove size="1.25rem" />
-                                    <span className="max-md:hidden">Remove</span>
-                                </button>
-                            </div>
-                        </div>
+                            ))
+                        }
+
                     </div>
 
                     <div className="flex items-center justify-between gap-2">
