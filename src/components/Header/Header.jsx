@@ -5,12 +5,13 @@ import { MdSunny } from "react-icons/md";
 import { FaMoon } from "react-icons/fa";
 import { useContext, useState } from 'react';
 import CartModal from '../CartModal/CartModal';
-import { CartContext } from '../../utilities/contexts';
+import { CartContext, ThemeContext } from '../../utilities/contexts';
 
 const Header = () => {
 
     const [showCart, setShowCart] = useState(false);
     const [cart] = useContext(CartContext);
+    const [dark, setDark] = useContext(ThemeContext);
 
     return (
         <>
@@ -34,9 +35,13 @@ const Header = () => {
                             </a>
                         </li>
                         <li>
-                            <a className="bg-primary/20 dark:bg-primary/[7%] rounded-lg backdrop-blur-[2px] p-1 inline-block" href="#">
-                                <button><MdSunny color='#dd6502' size="1.9em" /></button>
-                                <button><FaMoon color='#7f30f7' size="1.9em" /></button>
+                            <a onClick={()=> setDark(dark=>!dark)} className="bg-primary/20 dark:bg-primary/[7%] rounded-lg backdrop-blur-[2px] p-1 inline-block" href="#">
+                                <button>
+                                    {
+                                        dark ? <button><MdSunny color='#dd6502' size="1.9em" /></button> :
+                                            <button><FaMoon color='#7f30f7' size="1.9em" /></button>
+                                    }
+                                </button>
                             </a>
                         </li>
                         <li>

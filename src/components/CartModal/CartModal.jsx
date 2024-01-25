@@ -14,6 +14,7 @@ const CartModal = ({ onClose }) => {
     const handleRemoveAll = () => {
         const response = confirm("Are you confirm to remove all movies from your cart?");
         if (response) setCart([]);
+        onClose();
         toast("Removed all movies from your cart!");
     }
 

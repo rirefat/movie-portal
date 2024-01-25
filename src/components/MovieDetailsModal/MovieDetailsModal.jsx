@@ -16,7 +16,7 @@ const MovieDetailsModal = ({ movie, onClose }) => {
 
         if (!find) {
             setCart([...cart, movie]);
-            toast(`"${movie.title}" is added to your cart!`);
+            // toast(`"${movie.title}" is added to your cart!`);
         }
         else{
             toast(`"${movie.title}" is already added to your cart!`);

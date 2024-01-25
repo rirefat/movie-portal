@@ -21,7 +21,7 @@ const MovieCard = ({ movie }) => {
         })
         if (!find) {
             setCart([...cart, movie]);
-            toast(`"${movie.title}" is added to your cart!`);
+            // toast(`"${movie.title}" is added to your cart!`);
         }
         else{
             toast(`"${movie.title}" is already added to your cart!`);
@@ -31,7 +31,7 @@ const MovieCard = ({ movie }) => {
     return (
         <>
             {modalOpen && <MovieDetailsModal movie={movie} onClose={handleModalClose} />}
-            <figure className="p-4 border border-black/10 shadow-sm dark:border-white/10 rounded-xl">
+            <figure className="p-4 border border-black/10 shadow-sm dark:border-white rounded-xl">
                 <img className="w-full object-cover" src={getImgUrl(movie.cover)} alt={movie.title} />
                 <figcaption className="pt-4">
                     <h3 onClick={() => setModalOpen(true)} className="text-xl mb-1 cursor-pointer hover:underline underline-offset-8">{movie.title}</h3>
