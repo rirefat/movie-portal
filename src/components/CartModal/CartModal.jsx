@@ -5,17 +5,21 @@ import { useContext } from "react";
 import { CartContext } from "../../utilities/contexts";
 import { getImgUrl } from "../../utilities/utils";
 import emptyCartImg from '../../assets/empty-cart.svg'
+import { toast } from 'react-toastify';
+
 
 const CartModal = ({ onClose }) => {
     const [cart, setCart] = useContext(CartContext);
-
+    
     const handleRemoveAll = () => {
         const response = confirm("Are you confirm to remove all movies from your cart?");
         if (response) setCart([]);
+        toast("Removed all movies from your cart!");
     }
 
     const handleRemove = (item) => {
         setCart(cart.filter((i) => i.id !== item.id));
+        toast(`"${item.title}" is removed from your cart!`);
     }
 
     return (

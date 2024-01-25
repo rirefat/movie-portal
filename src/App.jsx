@@ -5,6 +5,9 @@ import MovieList from "./components/MovieList/MovieList";
 import Sidebar from "./components/Sidebar/Sidebar";
 import { CartContext } from "./utilities/contexts";
 
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 const App = () => {
   const [cart, setCart]=useState([])
   return (
@@ -15,6 +18,7 @@ const App = () => {
         <MovieList/>
       </main>
       <Footer />
+      <ToastContainer />
     </CartContext.Provider>
   );
 };

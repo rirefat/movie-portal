@@ -5,6 +5,7 @@ import Ratings from "./Ratings";
 import MovieDetailsModal from "../MovieDetailsModal/MovieDetailsModal";
 import { useContext, useState } from "react";
 import { CartContext } from "../../utilities/contexts";
+import { toast } from "react-toastify";
 
 const MovieCard = ({ movie }) => {
     const [modalOpen, setModalOpen] = useState(false);
@@ -20,6 +21,10 @@ const MovieCard = ({ movie }) => {
         })
         if (!find) {
             setCart([...cart, movie]);
+            toast(`"${movie.title}" is added to your cart!`);
+        }
+        else{
+            toast(`"${movie.title}" is already added to your cart!`);
         }
     }
 

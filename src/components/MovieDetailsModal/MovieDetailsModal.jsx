@@ -3,6 +3,7 @@ import { IoTicket } from "react-icons/io5";
 import { getImgUrl } from "../../utilities/utils";
 import { useContext } from "react";
 import { CartContext } from "../../utilities/contexts";
+import { toast } from "react-toastify";
 
 const MovieDetailsModal = ({ movie, onClose }) => {
 
@@ -15,6 +16,10 @@ const MovieDetailsModal = ({ movie, onClose }) => {
 
         if (!find) {
             setCart([...cart, movie]);
+            toast(`"${movie.title}" is added to your cart!`);
+        }
+        else{
+            toast(`"${movie.title}" is already added to your cart!`);
         }
     }
 
